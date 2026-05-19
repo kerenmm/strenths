@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>שאלון חוזקות אישיות – VIA</title>
+<title>שאלון חוזקות אישיות</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -13,380 +13,142 @@
   --gold: #C9A84C;
   --gold-light: #F0DFA0;
   --gold-pale: #FDF6E3;
-  --teal: #2D6A6A;
-  --teal-light: #E0F0EE;
   --coral: #C45C3A;
-  --coral-light: #FAE8E2;
-  --purple: #5B4E8C;
-  --purple-light: #EDE8F8;
-  --green: #3A7D5B;
-  --green-light: #E2F2EA;
-  --blue: #2B5F8C;
-  --blue-light: #E3EDF8;
   --border: #E8E0D0;
   --text-muted: #7A7060;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Heebo', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  min-height: 100vh;
-  direction: rtl;
-}
+body { font-family: 'Heebo', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; direction: rtl; }
 
-/* ── LANDING ── */
-#landing {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
-  background: var(--ink);
-  position: relative;
-  overflow: hidden;
-}
-#landing::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, #2D2250 0%, transparent 70%),
-              radial-gradient(ellipse 50% 40% at 80% 100%, #1A3A3A 0%, transparent 60%);
-  pointer-events: none;
-}
-.landing-inner { position: relative; z-index: 1; text-align: center; max-width: 540px; }
-.landing-badge {
-  display: inline-block;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 16px;
-  border-radius: 2px;
-  margin-bottom: 1.5rem;
-}
-.landing-title {
-  font-size: clamp(32px, 6vw, 52px);
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.15;
-  margin-bottom: 0.5rem;
-}
+#landing { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem; background: var(--ink); position: relative; overflow: hidden; }
+#landing::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, #2D2250 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 100%, #1A3A3A 0%, transparent 60%); pointer-events: none; }
+.landing-inner { position: relative; z-index: 1; text-align: center; max-width: 560px; }
+.landing-badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: 2px; padding: 5px 16px; border-radius: 2px; margin-bottom: 1.5rem; }
+.landing-title { font-size: clamp(32px, 6vw, 52px); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 0.75rem; }
 .landing-title span { color: var(--gold); }
-.landing-sub {
-  font-size: 15px;
-  color: #B0A8C0;
-  margin-bottom: 2rem;
-  line-height: 1.7;
-}
-.start-btn {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--ink);
-  font-family: 'Heebo', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 14px 40px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  letter-spacing: 0.5px;
-}
+.landing-sub { font-size: 15px; color: #B0A8C0; margin-bottom: 0.5rem; line-height: 1.7; }
+.landing-detail { font-size: 13px; color: #888090; margin-bottom: 2rem; line-height: 1.6; }
+.start-btn { display: inline-block; background: var(--gold); color: var(--ink); font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 700; padding: 14px 40px; border: none; border-radius: 3px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
 .start-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
-.qr-section {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
+.cat-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1.5rem; }
+.cat-chip { font-size: 11px; padding: 4px 12px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
+.qr-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
 .qr-label { font-size: 12px; color: #B0A8C0; margin-bottom: 1rem; letter-spacing: 1px; }
-#qrcode {
-  display: inline-block;
-  background: #fff;
-  padding: 12px;
-  border-radius: 4px;
-}
-.via-virtues {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-.virtue-chip {
-  font-size: 11px;
-  padding: 4px 12px;
-  border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.6);
-}
+#qrcode { display: inline-block; background: #fff; padding: 12px; border-radius: 4px; }
 
-/* ── QUESTIONNAIRE ── */
-#questionnaire { display: none; min-height: 100vh; padding-bottom: 2rem; }
-.q-header {
-  background: var(--ink);
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.q-logo { font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
-.q-progress-wrap { flex: 1; max-width: 280px; margin: 0 1.5rem; }
+#questionnaire { display: none; min-height: 100vh; padding-bottom: 3rem; }
+.q-header { background: var(--ink); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; gap: 1rem; }
+.q-logo { font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 1px; white-space: nowrap; }
+.q-progress-wrap { flex: 1; max-width: 300px; }
 .q-progress-bg { background: rgba(255,255,255,0.15); border-radius: 99px; height: 4px; }
 .q-progress-fill { height: 4px; border-radius: 99px; background: var(--gold); transition: width 0.4s; }
 .q-progress-text { font-size: 11px; color: #B0A8C0; text-align: center; margin-top: 4px; }
+.q-page-ind { font-size: 12px; color: #B0A8C0; white-space: nowrap; }
 .q-body { max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem; }
-.page-title {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-}
-.q-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.2s;
-}
+.page-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 1.25rem; text-transform: uppercase; }
+.q-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color 0.2s; }
 .q-card.done { border-color: var(--gold); }
 .q-num { font-size: 11px; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 500; }
-.q-text { font-size: 15px; color: var(--ink); line-height: 1.6; margin-bottom: 1rem; font-weight: 400; }
+.q-text { font-size: 15px; color: var(--ink); line-height: 1.6; margin-bottom: 1rem; }
 .scale-wrap { display: flex; gap: 6px; }
-.s-btn {
-  flex: 1;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: transparent;
-  cursor: pointer;
-  font-family: 'Heebo', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-muted);
-  transition: all 0.15s;
-}
+.s-btn { flex: 1; height: 40px; border: 1px solid var(--border); border-radius: 4px; background: transparent; cursor: pointer; font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 500; color: var(--text-muted); transition: all 0.15s; }
 .s-btn:hover { background: var(--gold-pale); border-color: var(--gold); color: var(--ink); }
 .s-btn.active { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 700; }
-.scale-ends { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 4px; padding: 0 2px; }
+.scale-ends { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
 .q-nav { display: flex; gap: 10px; justify-content: center; margin-top: 1.5rem; }
-.btn-nav {
-  padding: 11px 28px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: transparent;
-  font-family: 'Heebo', sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  color: var(--ink);
-  transition: all 0.15s;
-}
+.btn-nav { padding: 11px 28px; border-radius: 4px; border: 1px solid var(--border); background: transparent; font-family: 'Heebo', sans-serif; font-size: 14px; cursor: pointer; color: var(--ink); transition: all 0.15s; }
 .btn-nav:hover { background: var(--cream); }
 .btn-nav.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
 .btn-nav.primary:hover { background: #2D2250; }
-.btn-nav:disabled { opacity: 0.4; cursor: default; }
-.warn-msg { font-size: 12px; color: var(--coral); text-align: center; margin-top: 0.75rem; }
+.warn-msg { font-size: 12px; color: var(--coral); text-align: center; margin-top: 0.75rem; min-height: 1.2em; }
 
-/* ── RESULTS ── */
-#results { display: none; min-height: 100vh; background: var(--cream); }
-.r-hero {
-  background: var(--ink);
-  padding: 3rem 1.5rem 2.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.r-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 50% 0%, #2D2250 0%, transparent 70%);
-  pointer-events: none;
-}
+#results { display: none; min-height: 100vh; }
+.r-hero { background: var(--ink); padding: 3rem 1.5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+.r-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 0%, #2D2250 0%, transparent 70%); pointer-events: none; }
 .r-hero-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
 .r-badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: 2px; padding: 4px 14px; border-radius: 2px; margin-bottom: 1rem; }
 .r-title { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 0.5rem; }
 .r-sub { font-size: 14px; color: #B0A8C0; line-height: 1.6; }
-.r-body { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
-.r-section-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-}
-.virtue-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
-}
-.virtue-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 4px;
-  height: 100%;
-  border-radius: 10px 0 0 10px;
-}
-.vc-teal::before { background: var(--teal); }
-.vc-coral::before { background: var(--coral); }
-.vc-purple::before { background: var(--purple); }
-.vc-green::before { background: var(--green); }
-.vc-blue::before { background: var(--blue); }
-.vc-gold::before { background: var(--gold); }
-.vc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.75rem; gap: 1rem; }
-.vc-name-wrap {}
-.vc-name { font-size: 18px; font-weight: 700; color: var(--ink); }
-.vc-eng { font-size: 12px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.5px; }
-.vc-score-wrap { text-align: left; flex-shrink: 0; }
-.vc-score { font-size: 26px; font-weight: 900; }
-.vc-score-max { font-size: 12px; color: var(--text-muted); }
-.vc-bar-bg { background: var(--border); border-radius: 99px; height: 6px; margin-bottom: 1rem; }
-.vc-bar-fill { height: 6px; border-radius: 99px; transition: width 0.8s cubic-bezier(.4,0,.2,1); }
-.vc-level { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 2px; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
-.vc-desc { font-size: 14px; color: #444; line-height: 1.75; }
-.vc-strengths { margin-top: 1rem; }
-.vc-strengths-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
-.vc-strength-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 2px;
-  border: 1px solid var(--border);
-  color: var(--ink);
-  background: var(--cream);
-}
+.r-body { max-width: 760px; margin: 0 auto; padding: 2rem 1rem; }
 
-/* teal */
-.lvl-teal-high { background: var(--teal-light); color: var(--teal); }
-.lvl-teal-mid { background: #EEF7F7; color: #4A9090; }
-.lvl-teal-low { background: var(--border); color: var(--text-muted); }
-.bar-teal { background: var(--teal); }
-.score-teal { color: var(--teal); }
-/* coral */
-.lvl-coral-high { background: var(--coral-light); color: var(--coral); }
-.lvl-coral-mid { background: #FDF0EC; color: #B07060; }
-.lvl-coral-low { background: var(--border); color: var(--text-muted); }
-.bar-coral { background: var(--coral); }
-.score-coral { color: var(--coral); }
-/* purple */
-.lvl-purple-high { background: var(--purple-light); color: var(--purple); }
-.lvl-purple-mid { background: #F5F2FC; color: #7B70A0; }
-.lvl-purple-low { background: var(--border); color: var(--text-muted); }
-.bar-purple { background: var(--purple); }
-.score-purple { color: var(--purple); }
-/* green */
-.lvl-green-high { background: var(--green-light); color: var(--green); }
-.lvl-green-mid { background: #EEF6F2; color: #5A9070; }
-.lvl-green-low { background: var(--border); color: var(--text-muted); }
-.bar-green { background: var(--green); }
-.score-green { color: var(--green); }
-/* blue */
-.lvl-blue-high { background: var(--blue-light); color: var(--blue); }
-.lvl-blue-mid { background: #EEF4FA; color: #4A7090; }
-.lvl-blue-low { background: var(--border); color: var(--text-muted); }
-.bar-blue { background: var(--blue); }
-.score-blue { color: var(--blue); }
-/* gold */
-.lvl-gold-high { background: var(--gold-pale); color: #8A6A00; }
-.lvl-gold-mid { background: #FDF8EE; color: #AA8820; }
-.lvl-gold-low { background: var(--border); color: var(--text-muted); }
-.bar-gold { background: var(--gold); }
-.score-gold { color: #8A6A00; }
+.sig-banner { background: var(--ink); border-radius: 10px; padding: 1.75rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+.sig-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 0% 50%, #2D2250 0%, transparent 70%); }
+.sig-inner { position: relative; z-index: 1; }
+.sig-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 0.75rem; text-transform: uppercase; }
+.sig-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.sig-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.sig-chip { background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.5); color: var(--gold-light); font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 3px; }
 
-.top-strength-banner {
-  background: var(--ink);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-.top-strength-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 100% at 0% 50%, #2D2250 0%, transparent 70%);
-}
-.tsb-inner { position: relative; z-index: 1; }
-.tsb-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; }
-.tsb-title { font-size: 22px; font-weight: 900; margin-bottom: 0.4rem; }
-.tsb-sub { font-size: 14px; color: #C0B8D0; line-height: 1.6; }
+.cat-section { margin-bottom: 2rem; }
+.cat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 2px solid; }
+.cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.cat-title-text { font-size: 16px; font-weight: 700; }
+.cat-eng { font-size: 12px; color: var(--text-muted); margin-right: auto; }
 
-.restart-btn {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 2rem auto;
-  padding: 13px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: transparent;
-  font-family: 'Heebo', sans-serif;
-  font-size: 14px;
-  cursor: pointer;
-  color: var(--ink);
-  text-align: center;
-}
-.restart-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.strength-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.str-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; }
+.str-crown { position: absolute; top: 8px; left: 8px; font-size: 13px; }
+.str-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.str-eng { font-size: 11px; margin-bottom: 0.75rem; }
+.str-bar-bg { background: var(--border); border-radius: 99px; height: 5px; margin-bottom: 0.5rem; }
+.str-bar-fill { height: 5px; border-radius: 99px; transition: width 0.8s cubic-bezier(.4,0,.2,1); }
+.str-score-row { display: flex; justify-content: space-between; align-items: center; }
+.str-score { font-size: 16px; font-weight: 900; }
+.str-pct { font-size: 11px; color: var(--text-muted); }
+.str-level { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 2px; margin-top: 0.4rem; display: inline-block; }
 
-@media (max-width: 480px) {
-  .s-btn { height: 36px; font-size: 14px; }
-  .q-card { padding: 1rem; }
-  .virtue-card { padding: 1.25rem; }
+.desc-panel { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-top: 1.5rem; }
+.desc-panel-title { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; }
+.sig-desc-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.sig-desc-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.sig-desc-name { font-size: 15px; font-weight: 700; margin-bottom: 0.4rem; }
+.sig-desc-eng { font-size: 12px; font-weight: 400; color: var(--text-muted); }
+.sig-desc-text { font-size: 14px; color: #444; line-height: 1.75; }
+
+.restart-btn { display: block; width: 100%; max-width: 300px; margin: 2rem auto; padding: 13px; border-radius: 4px; border: 1px solid var(--border); background: transparent; font-family: 'Heebo', sans-serif; font-size: 14px; cursor: pointer; color: var(--ink); text-align: center; }
+.restart-btn:hover { background: var(--ink); color: #fff; }
+
+@media (max-width: 500px) {
+  .strength-grid { grid-template-columns: 1fr 1fr; }
+  .q-page-ind { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
 <section id="landing">
   <div class="landing-inner">
-    <div class="landing-badge">VIA Character Strengths</div>
-    <h1 class="landing-title">שאלון<br><span>חוזקות אישיות</span></h1>
-    <p class="landing-sub">גלה/י את החוזקות הייחודיות שלך לפי מודל<br>הפסיכולוגיה החיובית של פרופ׳ מרטין סליגמן</p>
-    <button class="start-btn" onclick="startQuestionnaire()">← התחל/י את השאלון</button>
-    <div class="via-virtues">
-      <span class="virtue-chip">חוכמה וידע</span>
-      <span class="virtue-chip">אומץ</span>
-      <span class="virtue-chip">אנושיות</span>
-      <span class="virtue-chip">צדק</span>
-      <span class="virtue-chip">מתינות</span>
-      <span class="virtue-chip">טרנסצנדנציה</span>
+    <div class="landing-badge">שאלון חוזקות – VIA סליגמן</div>
+    <h1 class="landing-title">מהן<br><span>חוזקות החותם</span><br>שלך?</h1>
+    <p class="landing-sub">48 שאלות שיגלו את 24 החוזקות האישיות שלך</p>
+    <p class="landing-detail">בסיום תראה/י אילו מהן הן <strong style="color:var(--gold)">חוזקות החותם</strong> שלך —<br>אלו שמייצגות אותך בצורה הכי עמוקה</p>
+    <button class="start-btn" onclick="startQuestionnaire()">התחל/י את השאלון ←</button>
+    <div class="cat-chips">
+      <span class="cat-chip">חוכמה וידע</span>
+      <span class="cat-chip">אומץ</span>
+      <span class="cat-chip">אנושיות ואהבה</span>
+      <span class="cat-chip">צדק</span>
+      <span class="cat-chip">מתינות</span>
+      <span class="cat-chip">נשגבות</span>
     </div>
     <div class="qr-section">
-      <div class="qr-label">סרוק לגישה מהטלפון</div>
+      <div class="qr-label">סרוק/י לגישה מהטלפון</div>
       <div id="qrcode"></div>
     </div>
   </div>
 </section>
 
-<!-- QUESTIONNAIRE -->
 <section id="questionnaire">
   <div class="q-header">
-    <div class="q-logo">VIA</div>
+    <div class="q-logo">חוזקות</div>
     <div class="q-progress-wrap">
       <div class="q-progress-bg"><div class="q-progress-fill" id="progFill" style="width:0%"></div></div>
       <div class="q-progress-text" id="progText">0 / 48</div>
     </div>
-    <div style="font-size:12px;color:#B0A8C0;" id="pageIndicator">עמוד 1 מתוך 8</div>
+    <div class="q-page-ind" id="pageInd">עמוד 1/8</div>
   </div>
   <div class="q-body">
-    <div class="page-title" id="pageTitle">שאלות 1–6</div>
+    <div class="page-title" id="pageTitle"></div>
     <div id="qList"></div>
     <div class="q-nav">
       <button class="btn-nav" id="btnBack" onclick="goPage(-1)">→ הקודם</button>
@@ -396,296 +158,248 @@ body {
   </div>
 </section>
 
-<!-- RESULTS -->
 <section id="results">
   <div class="r-hero">
     <div class="r-hero-inner">
       <div class="r-badge">התוצאות שלך</div>
       <div class="r-title">פרופיל החוזקות האישיות</div>
-      <div class="r-sub">על פי 6 המעלות של מודל VIA – סליגמן</div>
+      <div class="r-sub">לפי מודל 24 החוזקות של סליגמן – VIA</div>
     </div>
   </div>
   <div class="r-body">
-    <div id="topBanner"></div>
-    <div class="r-section-title">6 המעלות – פירוט וציונים</div>
-    <div id="virtueCards"></div>
-    <button class="restart-btn" onclick="restart()">← מלא/י שוב</button>
+    <div id="sigBanner"></div>
+    <div id="catSections"></div>
+    <div class="desc-panel">
+      <div class="desc-panel-title">✨ חוזקות החותם שלך – הסבר מעמיק</div>
+      <div id="sigDescs"></div>
+    </div>
+    <button class="restart-btn" onclick="restart()">מלא/י שוב ←</button>
   </div>
 </section>
 
 <script>
-// ── DATA ──
+const strengths = [
+  {id:1,  name:"סקרנות",             eng:"Curiosity",             cat:0, qs:[1,2]  },
+  {id:2,  name:"אהבת הלמידה",        eng:"Love of Learning",      cat:0, qs:[3,4]  },
+  {id:3,  name:"שיפוט",              eng:"Judgment",              cat:0, qs:[5,6]  },
+  {id:4,  name:"כושר המצאה",         eng:"Creativity",            cat:0, qs:[7,8]  },
+  {id:5,  name:"אינטליגנציה חברתית", eng:"Social Intelligence",   cat:0, qs:[9,10] },
+  {id:6,  name:"פרספקטיבה",          eng:"Perspective",           cat:0, qs:[11,12]},
+  {id:7,  name:"תעוזה",              eng:"Bravery",               cat:1, qs:[13,14]},
+  {id:8,  name:"התמדה",              eng:"Perseverance",          cat:1, qs:[15,16]},
+  {id:9,  name:"יושר",               eng:"Honesty",               cat:1, qs:[17,18]},
+  {id:10, name:"טוב לב",             eng:"Kindness",              cat:2, qs:[19,20]},
+  {id:11, name:"אהבה",               eng:"Love",                  cat:2, qs:[21,22]},
+  {id:12, name:"אזרחות טובה",        eng:"Citizenship",           cat:3, qs:[23,24]},
+  {id:13, name:"הגינות",             eng:"Fairness",              cat:3, qs:[25,26]},
+  {id:14, name:"מנהיגות",            eng:"Leadership",            cat:3, qs:[27,28]},
+  {id:15, name:"שליטה עצמית",        eng:"Self-Regulation",       cat:4, qs:[29,30]},
+  {id:16, name:"זהירות",             eng:"Prudence",              cat:4, qs:[31,32]},
+  {id:17, name:"ענווה",              eng:"Humility",              cat:4, qs:[33,34]},
+  {id:18, name:"הערכת יופי",         eng:"Appreciation of Beauty",cat:5, qs:[35,36]},
+  {id:19, name:"הכרת תודה",          eng:"Gratitude",             cat:5, qs:[37,38]},
+  {id:20, name:"תקווה",              eng:"Hope",                  cat:5, qs:[39,40]},
+  {id:21, name:"רוחניות",            eng:"Spirituality",          cat:5, qs:[41,42]},
+  {id:22, name:"סלחנות",             eng:"Forgiveness",           cat:5, qs:[43,44]},
+  {id:23, name:"הומור",              eng:"Humor",                 cat:5, qs:[45,46]},
+  {id:24, name:"התלהבות",            eng:"Zest",                  cat:5, qs:[47,48]},
+];
+
+const categories = [
+  {name:"חוכמה וידע",    eng:"Wisdom & Knowledge", color:"#2B5F8C"},
+  {name:"אומץ",          eng:"Courage",             color:"#8B3A3A"},
+  {name:"אנושיות ואהבה", eng:"Humanity & Love",     color:"#6B4E8C"},
+  {name:"צדק",           eng:"Justice",             color:"#2D6A6A"},
+  {name:"מתינות",        eng:"Temperance",          color:"#3A7D5B"},
+  {name:"נשגבות",        eng:"Transcendence",       color:"#8A6A00"},
+];
+
+const descs = {
+  1:  "הסקרנות שלך מניעה אותך לחקור, לשאול ולהתעניין בעולם. אתה/את נמשך/ת לנושאים חדשים ומוצא/ת עניין כמעט בכל דבר.",
+  2:  "אהבת הלמידה שלך גורמת לך להעמיק בנושאים ולרכוש ידע חדש. ללמוד הוא עבורך חוויה מהנה ומתגמלת בפני עצמה.",
+  3:  "יכולת השיפוט שלך מאפשרת לך לחשוב בצורה ביקורתית ומאוזנת, לבחון דברים מכמה זוויות ולהגיע למסקנות מושכלות.",
+  4:  "כושר ההמצאה שלך מתבטא ביצירתיות וחדשנות. אתה/את תמיד מוצא/ת דרכים מקוריות לפתור בעיות ולממש רעיונות.",
+  5:  "האינטליגנציה החברתית שלך מאפשרת לך לקרוא מצבים חברתיים, להבין רגשות של אחרים ולהתאים את עצמך לכל סביבה.",
+  6:  "הפרספקטיבה שלך מאפשרת לך לראות את התמונה הגדולה ולסייע לאחרים למצוא משמעות במצבים מורכבים.",
+  7:  "התעוזה שלך מתבטאת ביכולת לעמוד מול אתגרים, לומר את האמת גם כשזה קשה, ולפעול גם תחת לחץ ופחד.",
+  8:  "ההתמדה שלך מביאה אותך לסיים את מה שהתחלת ולהגיע ליעדים שהצבת לעצמך, גם מול קשיים.",
+  9:  "היושר שלך מתבטא באמינות וכנות. אנשים סומכים עליך כי אתה/את תמיד עושה מה שאתה/את אומר/ת.",
+  10: "טוב הלב שלך מתבטא ברצון לעזור ובנדיבות רגשית. אתה/את עושה דברים טובים גם כשאף אחד לא רואה.",
+  11: "היכולת שלך לאהוב ולהיות אהוב/ה מתבטאת במערכות יחסים עמוקות וחיבור רגשי אותנטי עם קרוביך.",
+  12: "האזרחות הטובה שלך מתבטאת במסירות לקבוצה ונכונות לוותר למען הכלל.",
+  13: "ההגינות שלך מתבטאת ביחס שווה לכולם, ללא משוא פנים, ובאמונה שכל אדם ראוי לכבוד.",
+  14: "המנהיגות שלך מתבטאת ביכולת לארגן, להניע ולהוביל אנשים לפעולה משותפת.",
+  15: "השליטה העצמית שלך מאפשרת לך לנהל רגשות ודחפים ולפעול לפי ערכיך גם כשזה קשה.",
+  16: "הזהירות שלך מגנה עליך מפני החלטות פזיזות. אתה/את חושב/ת לפני שפועל/ת.",
+  17: "הענווה שלך מתבטאת בכך שאינך זקוק/ה להיות במרכז ומכיר/ה במגבלותיך בצורה בריאה.",
+  18: "היכולת שלך להעריך יופי ומצוינות – באמנות, בטבע ובחיי היומיום – מעניקה לך עומק וחיות.",
+  19: "הכרת התודה שלך מתבטאת בתשומת לב לטוב שבחיים ובתחושת ברכה על מה שיש לך.",
+  20: "התקווה שלך מאפשרת לך להאמין בעתיד טוב יותר ולשמור על אופטימיות גם בזמנים קשים.",
+  21: "הרוחניות שלך מתבטאת בחיבור לתכלית נעלית ותחושת משמעות עמוקה בחיים.",
+  22: "יכולת הסליחה שלך מאפשרת לך לשחרר טינה ולתת לאנשים הזדמנות שנייה מתוך חמלה.",
+  23: "ההומור שלך מביא שמחה לסביבה ומאפשר לך ולאחרים לראות את הצד הקליל של החיים.",
+  24: "ההתלהבות שלך מתבטאת באנרגיה וחיוניות. אתה/את נותן/ת את כל-כולך לכל מה שעושה.",
+};
+
 const questions = [
-  {id:1,text:"אני סקרן/ית תמיד לגבי העולם",virtue:0,rev:false},
-  {id:2,text:"אני משתעמם/משתעממת בנקל",virtue:0,rev:true},
-  {id:3,text:"אני כולי התלהבות כאשר אני לומד/ת משהו חדש",virtue:0,rev:false},
-  {id:4,text:"לעולם אינני עושה מאמצים לבקר במוזיאונים או באתרים לימודיים אחרים",virtue:0,rev:true},
-  {id:5,text:"כאשר הנושא מחייב זאת, אני מסוגל/ת לחשוב בצורה הגיונית מאוד",virtue:0,rev:false},
-  {id:6,text:"אני נוטה לשיפוטים מהירים",virtue:0,rev:true},
-  {id:7,text:"אני אוהב/ת לחשוב על דרכים חדשות לביצוע דברים",virtue:0,rev:false},
-  {id:8,text:"לרוב חברי יש דמיון מפותח יותר משלי",virtue:0,rev:true},
-  {id:9,text:"יהיה אשר יהיה מצבי החברתי ברגע נתון, תמיד אצליח להתאים את עצמי",virtue:2,rev:false},
-  {id:10,text:"אני לא מצטיין/ת בתחושת רגשות הזולת",virtue:2,rev:true},
-  {id:11,text:"אני מסוגל/ת תמיד להתבונן בדברים ולראות את התמונה הכוללת",virtue:0,rev:false},
-  {id:12,text:"נדיר שאנשים באים אלי לבקש את עצתי",virtue:0,rev:true},
-  {id:13,text:"פעמים רבות נקטתי עמדה גם מול התנגדות חזקה",virtue:1,rev:false},
-  {id:14,text:"כאבר ואכזבה בדרך כלל מכריעים אותי",virtue:1,rev:true},
-  {id:15,text:"אני מסיים/ת תמיד כל דבר שאני מתחיל/ה",virtue:1,rev:false},
-  {id:16,text:"אני נוטה לסטות מהעבודה שאני מבצע/ת",virtue:1,rev:true},
-  {id:17,text:"אני מקיים/ת תמיד את הבטחות",virtue:1,rev:false},
-  {id:18,text:"חברי לא אומרים לי אף פעם שאני מעשי/ת",virtue:1,rev:true},
-  {id:19,text:"בחודש האחרון התנדבתי לעזור לשכנה",virtue:3,rev:false},
-  {id:20,text:"בדרך כלל אני לא מתלהב/ת ממזלם הטוב של אחרים באותה מידה כמו ממזלי הטוב",virtue:3,rev:true},
-  {id:21,text:"ישנם אנשים בחיי שאכפת להם מרגשותיי ומרווחתי לא פחות משאכפת להם מעצמם",virtue:2,rev:false},
-  {id:22,text:"אני מתקשה לקבל אהבה מאחרים",virtue:2,rev:true},
-  {id:23,text:"אני ממצא את מלוא יכולתי בעבודה בקבוצה",virtue:3,rev:false},
-  {id:24,text:"אני מהסס/ת להקריב את האינטרס האישי שלי לטובת הקבוצה שאני חלק ממנה",virtue:3,rev:true},
-  {id:25,text:"אני מתייחס/ת באופן שווייוני לכל אדם, ואין זה משנה מי הוא או היא",virtue:3,rev:false},
-  {id:26,text:"כשאני לא מחבב/ת אדם מסוים, קשה לי להתייחס אליו או אליה בהגינות",virtue:3,rev:true},
-  {id:27,text:"אני מצליח/ה תמיד לגרום לאנשים לעשות דברים ביחד, בלי לנדנד להם",virtue:3,rev:false},
-  {id:28,text:"אני לא מצטיין/ת בארגון פעולות קבוצתיות",virtue:3,rev:true},
-  {id:29,text:"אני שולט/ת ברגשותיי",virtue:4,rev:false},
-  {id:30,text:"בדרך כלל אני לא מסוגל/ת להתאמד בדיאטה",virtue:4,rev:true},
-  {id:31,text:"אני נמנע/ת מפעיליות הכרוכות בסכנה פיזית",virtue:4,rev:false},
-  {id:32,text:"לפעמים אני עושה החלטות מאוד גרועות לגבי החברים שלי ובמערכות היחסים שלי",virtue:4,rev:true},
-  {id:33,text:"אני משנה נושא שיחה כאשר אנשים מתחילים להחמיא לי",virtue:4,rev:false},
-  {id:34,text:"אני מדבר/ת לעיתים קרובות על הישגיי",virtue:4,rev:true},
-  {id:35,text:"בחודש האחרון מצאתי את עצמי נפעם/ת ממצוינות במוסיקה, באמנות, בתיאטרון, או בתחום אחר",virtue:5,rev:false},
-  {id:36,text:"בשנה האחרונה לא יצרתי שום דבר יפה",virtue:5,rev:true},
-  {id:37,text:"אני אומר/ת תודה תמיד, גם על דברים קטנים",virtue:5,rev:false},
-  {id:38,text:"בדרך כלל אני לא חושב/ת על מזלי הטוב ועל הדברים הטובים בחיי",virtue:5,rev:true},
-  {id:39,text:"אני רואה תמיד את חצי הכוס המלאה",virtue:5,rev:false},
-  {id:40,text:"בדרך כלל אין לי תכנית שהשקעתי בה מחשבה רבה, לגבי מה שברצוני לעשות בעתיד",virtue:5,rev:true},
-  {id:41,text:"לחיים שלי יש מטרה רבת עוצמה",virtue:5,rev:false},
-  {id:42,text:"אין לי ייעוד בחיים",virtue:5,rev:true},
-  {id:43,text:"אני תמיד מניח/ה לעברי",virtue:4,rev:false},
-  {id:44,text:"אני לעולם לא נשארת חייב/ת",virtue:4,rev:false},
-  {id:45,text:"אני תמיד משתדל/ת לשלב עבודה עם הנאה ומשחק",virtue:5,rev:false},
-  {id:46,text:"נדיר שאני אומר/ת דברים מצחיקים",virtue:5,rev:true},
-  {id:47,text:"אני נותן/ת את כל-כולי בכל דבר שאני עושה",virtue:1,rev:false},
-  {id:48,text:"קורה לי הרבה שאני במצב רוח רע",virtue:5,rev:true}
+  {id:1, text:"אני סקרן/ית תמיד לגבי העולם", rev:false},
+  {id:2, text:"אני משתעמם/משתעממת בנקל", rev:true},
+  {id:3, text:"אני כולי התלהבות כאשר אני לומד/ת משהו חדש", rev:false},
+  {id:4, text:"לעולם אינני עושה מאמצים לבקר במוזיאונים או באתרים לימודיים אחרים", rev:true},
+  {id:5, text:"כאשר הנושא מחייב זאת, אני מסוגל/ת לחשוב בצורה הגיונית מאוד", rev:false},
+  {id:6, text:"אני נוטה לשיפוטים מהירים", rev:true},
+  {id:7, text:"אני אוהב/ת לחשוב על דרכים חדשות לביצוע דברים", rev:false},
+  {id:8, text:"לרוב חברי יש דמיון מפותח יותר משלי", rev:true},
+  {id:9, text:"יהיה אשר יהיה מצבי החברתי ברגע נתון, תמיד אצליח להתאים את עצמי", rev:false},
+  {id:10,text:"אני לא מצטיין/ת בתחושת רגשות הזולת", rev:true},
+  {id:11,text:"אני מסוגל/ת תמיד להתבונן בדברים ולראות את התמונה הכוללת", rev:false},
+  {id:12,text:"נדיר שאנשים באים אלי לבקש את עצתי", rev:true},
+  {id:13,text:"פעמים רבות נקטתי עמדה גם מול התנגדות חזקה", rev:false},
+  {id:14,text:"כאבר ואכזבה בדרך כלל מכריעים אותי", rev:true},
+  {id:15,text:"אני מסיים/ת תמיד כל דבר שאני מתחיל/ה", rev:false},
+  {id:16,text:"אני נוטה לסטות מהעבודה שאני מבצע/ת", rev:true},
+  {id:17,text:"אני מקיים/ת תמיד את הבטחות", rev:false},
+  {id:18,text:"חברי לא אומרים לי אף פעם שאני מעשי/ת", rev:true},
+  {id:19,text:"בחודש האחרון התנדבתי לעזור לשכנה", rev:false},
+  {id:20,text:"בדרך כלל אני לא מתלהב/ת ממזלם הטוב של אחרים באותה מידה כמו ממזלי הטוב", rev:true},
+  {id:21,text:"ישנם אנשים בחיי שאכפת להם מרגשותיי ומרווחתי לא פחות משאכפת להם מעצמם", rev:false},
+  {id:22,text:"אני מתקשה לקבל אהבה מאחרים", rev:true},
+  {id:23,text:"אני ממצא את מלוא יכולתי בעבודה בקבוצה", rev:false},
+  {id:24,text:"אני מהסס/ת להקריב את האינטרס האישי שלי לטובת הקבוצה שאני חלק ממנה", rev:true},
+  {id:25,text:"אני מתייחס/ת באופן שווייוני לכל אדם, ואין זה משנה מי הוא או היא", rev:false},
+  {id:26,text:"כשאני לא מחבב/ת אדם מסוים, קשה לי להתייחס אליו או אליה בהגינות", rev:true},
+  {id:27,text:"אני מצליח/ה תמיד לגרום לאנשים לעשות דברים ביחד, בלי לנדנד להם", rev:false},
+  {id:28,text:"אני לא מצטיין/ת בארגון פעולות קבוצתיות", rev:true},
+  {id:29,text:"אני שולט/ת ברגשותיי", rev:false},
+  {id:30,text:"בדרך כלל אני לא מסוגל/ת להתאמד בדיאטה", rev:true},
+  {id:31,text:"אני נמנע/ת מפעיליות הכרוכות בסכנה פיזית", rev:false},
+  {id:32,text:"לפעמים אני עושה החלטות מאוד גרועות לגבי החברים שלי ובמערכות היחסים שלי", rev:true},
+  {id:33,text:"אני משנה נושא שיחה כאשר אנשים מתחילים להחמיא לי", rev:false},
+  {id:34,text:"אני מדבר/ת לעיתים קרובות על הישגיי", rev:true},
+  {id:35,text:"בחודש האחרון מצאתי את עצמי נפעם/ת ממצוינות במוסיקה, באמנות, בתיאטרון, או בתחום אחר", rev:false},
+  {id:36,text:"בשנה האחרונה לא יצרתי שום דבר יפה", rev:true},
+  {id:37,text:"אני אומר/ת תודה תמיד, גם על דברים קטנים", rev:false},
+  {id:38,text:"בדרך כלל אני לא חושב/ת על מזלי הטוב ועל הדברים הטובים בחיי", rev:true},
+  {id:39,text:"אני רואה תמיד את חצי הכוס המלאה", rev:false},
+  {id:40,text:"בדרך כלל אין לי תכנית שהשקעתי בה מחשבה רבה, לגבי מה שברצוני לעשות בעתיד", rev:true},
+  {id:41,text:"לחיים שלי יש מטרה רבת עוצמה", rev:false},
+  {id:42,text:"אין לי ייעוד בחיים", rev:true},
+  {id:43,text:"אני תמיד מניח/ה לעברי", rev:false},
+  {id:44,text:"אני לעולם לא נשארת חייב/ת", rev:false},
+  {id:45,text:"אני תמיד משתדל/ת לשלב עבודה עם הנאה ומשחק", rev:false},
+  {id:46,text:"נדיר שאני אומר/ת דברים מצחיקים", rev:true},
+  {id:47,text:"אני נותן/ת את כל-כולי בכל דבר שאני עושה", rev:false},
+  {id:48,text:"קורה לי הרבה שאני במצב רוח רע", rev:true},
 ];
 
-const virtues = [
-  {
-    id: 0,
-    name: "חוכמה וידע",
-    eng: "Wisdom & Knowledge",
-    color: "teal",
-    icon: "🧠",
-    desc_high: "יש לך סקרנות טבעית ורצון עז ללמוד. אתה/את תמיד מחפש/ת להעמיק את ההבנה, חושב/ת בצורה ביקורתית ויצירתית, ורואה את התמונה הרחבה בכל מצב. חוכמתך היא נכס לך ולסביבתך.",
-    desc_mid: "יש לך יכולת טובה ללמוד ולחשוב. בחלק מהמצבים את/ה מפגין/ה סקרנות ופתיחות, ובאחרים את/ה מעדיף/ה להסתמך על מה שכבר ידוע לך. פיתוח הרגל של חשיבה ביקורתית יעשיר אותך.",
-    desc_low: "ייתכן שאינך מוצא/ת ערך רב בלמידה תיאורטית, ומעדיף/ה לפעול מניסיון ישיר. זו גישה לגיטימית – נסה/י לפתח גם את ממד הסקרנות לנושאים שמעניינים אותך.",
-    strengths: ["סקרנות", "אהבת למידה", "חשיבה ביקורתית", "יצירתיות", "חוכמה"]
-  },
-  {
-    id: 1,
-    name: "אומץ",
-    eng: "Courage",
-    color: "coral",
-    icon: "🦁",
-    desc_high: "אתה/את אדם אמיץ המוכן/נה לעמוד מאחורי עמדותיו גם תחת לחץ. את/ה מסיים/ת את מה שהתחלת, כן/ה ואמיתי/ת עם עצמך ועם אחרים. האומץ שלך מעורר השראה.",
-    desc_mid: "יש לך אומץ לב שמתבטא בסיטואציות מסוימות. לפעמים את/ה מוכן/ה לעמוד על שלך, ולפעמים בוחר/ת לוותר. חיזוק הנחישות והכנות העצמית יכולים לסייע.",
-    desc_low: "ייתכן שאתה/את מתקשה להתמודד עם מצבים הדורשים עמידה מול התנגדות. זה לא חולשה – כולנו מרגישים כך לפעמים. נסה/י להתחיל בצעדים קטנים של הצבת גבולות.",
-    strengths: ["אמיץ", "נחישות", "יושרה", "מוכנות להתמודד", "כנות"]
-  },
-  {
-    id: 2,
-    name: "אנושיות",
-    eng: "Humanity",
-    color: "purple",
-    icon: "💜",
-    desc_high: "אתה/את אדם בעל/ת אינטליגנציה רגשית גבוהה, מסוגל/ת לאהוב ולהיות אהוב/ה, ומבין/ה אנשים לעומק. הקשרים שלך עם אחרים הם עמוקים ומשמעותיים.",
-    desc_mid: "יש לך יכולת לחיבור רגשי ולהבנת אחרים. לפעמים יש לך קושי בפתיחות מלאה או בקבלת תשומת לב. טיפוח מערכות יחסים קרובות יכול לחזק חוזקה זו.",
-    desc_low: "ייתכן שאתה/את מעדיף/ה שמירה על מרחב אישי בקשרים בינאישיים. אנשיות היא חוזקה שניתן לפתח עם הזמן, ומתחילה בסקרנות כלפי חוויות של אחרים.",
-    strengths: ["אהבה", "אמפתיה", "אינטליגנציה חברתית", "חמלה", "קרבה"]
-  },
-  {
-    id: 3,
-    name: "צדק",
-    eng: "Justice",
-    color: "blue",
-    icon: "⚖️",
-    desc_high: "אתה/את אדם הוגן, מחובר/ת לקהילה, ומסוגל/ת לעבוד בצוות בצורה מצוינת. את/ה מאמין/ה בשוויון ומוכן/ה לפעול למענו, גם כאשר זה עולה לך בוויתור אישי.",
-    desc_mid: "יש לך תחושת צדק ורצון לעזור לקהילה, אך לא תמיד זה מוביל לפעולה. חיזוק המחויבות הציבורית ועבודת הצוות יכולים להוציא חוזקה זו לאור.",
-    desc_low: "ייתכן שאתה/את נוטה להתמקד יותר בעצמך ובסביבתך הקרובה. זה טבעי – פיתוח מעורבות חברתית, גם בצעדים קטנים, יכול להיות מתגמל.",
-    strengths: ["הוגנות", "עבודת צוות", "מנהיגות", "אזרחות", "שוויון"]
-  },
-  {
-    id: 4,
-    name: "מתינות",
-    eng: "Temperance",
-    color: "green",
-    icon: "🌿",
-    desc_high: "יש לך שליטה עצמית ויכולת לנהוג באחריות ובאיפוק. את/ה זהיר/ה, ענוותן/ית, ומצליח/ה לשמור על איזון בחיים. אלה תכונות נדירות וחשובות.",
-    desc_mid: "יש לך שליטה עצמית בחלק מהתחומים. לפעמים את/ה מצליח/ה להתנהל באחריות, ובפעמים אחרות קשה לך. חיזוק הרגלים של חשיבה לפני פעולה יסייע.",
-    desc_low: "ייתכן שאתה/את חווה קושי בשליטה עצמית או ענוה. זה תחום שניתן לפתח עם מודעות עצמית ותרגול. זיהוי המצבים המאתגרים הוא הצעד הראשון.",
-    strengths: ["שליטה עצמית", "ענווה", "זהירות", "סליחה", "מתינות"]
-  },
-  {
-    id: 5,
-    name: "טרנסצנדנציה",
-    eng: "Transcendence",
-    color: "gold",
-    icon: "✨",
-    desc_high: "אתה/את אדם בעל/ת חוש אסתטי, הכרת תודה עמוקה, ותחושת משמעות ותקווה. מצאת מטרה בחיים שמעניקה לך כוח, ואת/ה יודע/ת ליהנות מהיפה שבעולם.",
-    desc_mid: "יש לך רגעים של הכרת תודה ותחושת משמעות. לפעמים קשה לך לחבר את הדברים לתמונה גדולה יותר. פיתוח הרגל של תשומת לב לדברים הטובים בחיים יכול לעזור.",
-    desc_low: "ייתכן שאתה/את מתמקד/ת בממשי ובמעשי, ופחות בחוויות של השראה ומשמעות. גם בלי נטיה טבעית, ניתן לפתח הכרת תודה יומיומית שתעשיר את חיי היומיום.",
-    strengths: ["הכרת תודה", "תקווה", "הומור", "אסתטיקה", "רוחניות"]
-  }
-];
+let answers = {}, currentPage = 0;
+const PER_PAGE = 6, TOTAL_PAGES = Math.ceil(questions.length / PER_PAGE);
 
-// ── STATE ──
-let answers = {};
-let currentPage = 0;
-const PER_PAGE = 6;
-const TOTAL_PAGES = Math.ceil(questions.length / PER_PAGE);
-
-// ── QR CODE ──
 window.addEventListener('load', () => {
-  const url = window.location.href;
-  new QRCode(document.getElementById('qrcode'), {
-    text: url,
-    width: 120,
-    height: 120,
-    colorDark: "#1A1A2E",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.M
-  });
+  try { new QRCode(document.getElementById('qrcode'), { text: window.location.href, width:120, height:120, colorDark:"#1A1A2E", colorLight:"#ffffff", correctLevel: QRCode.CorrectLevel.M }); } catch(e){}
 });
 
-// ── NAV ──
 function startQuestionnaire() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('questionnaire').style.display = 'block';
-  renderPage();
-  window.scrollTo(0,0);
+  renderPage(); window.scrollTo(0,0);
 }
-
 function restart() {
-  answers = {};
-  currentPage = 0;
+  answers = {}; currentPage = 0;
   document.getElementById('results').style.display = 'none';
   document.getElementById('landing').style.display = 'flex';
   window.scrollTo(0,0);
 }
-
-function pageQuestions() {
-  return questions.slice(currentPage * PER_PAGE, (currentPage + 1) * PER_PAGE);
-}
-
-function getScore(q, val) {
-  return q.rev ? (6 - val) : val;
-}
+function pageQuestions() { return questions.slice(currentPage*PER_PAGE, (currentPage+1)*PER_PAGE); }
+function getScore(q, val) { return q.rev ? (6-val) : val; }
 
 function renderPage() {
   const pqs = pageQuestions();
-  const totalAnswered = Object.keys(answers).length;
-  const pct = Math.round(totalAnswered / questions.length * 100);
-
-  document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progText').textContent = totalAnswered + ' / ' + questions.length;
-  document.getElementById('pageIndicator').textContent = 'עמוד ' + (currentPage + 1) + ' מתוך ' + TOTAL_PAGES;
-  document.getElementById('pageTitle').textContent = 'שאלות ' + (currentPage * PER_PAGE + 1) + '–' + Math.min((currentPage+1)*PER_PAGE, questions.length);
-
+  const answered = Object.keys(answers).length;
+  document.getElementById('progFill').style.width = Math.round(answered/questions.length*100)+'%';
+  document.getElementById('progText').textContent = answered+' / '+questions.length;
+  document.getElementById('pageInd').textContent = 'עמוד '+(currentPage+1)+'/'+TOTAL_PAGES;
+  document.getElementById('pageTitle').textContent = 'שאלות '+(currentPage*PER_PAGE+1)+'–'+Math.min((currentPage+1)*PER_PAGE,questions.length);
   let html = '';
   pqs.forEach(q => {
     const v = answers[q.id];
-    const done = v !== undefined;
-    html += `<div class="q-card${done?' done':''}" id="qc-${q.id}">
-      <div class="q-num">שאלה ${q.id}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="scale-wrap">`;
-    for (let i = 1; i <= 5; i++) {
-      html += `<button class="s-btn${v===i?' active':''}" onclick="setAns(${q.id},${i})">${i}</button>`;
-    }
+    html += `<div class="q-card${v!==undefined?' done':''}"><div class="q-num">שאלה ${q.id}</div><div class="q-text">${q.text}</div><div class="scale-wrap">`;
+    for(let i=1;i<=5;i++) html += `<button class="s-btn${v===i?' active':''}" onclick="setAns(${q.id},${i})">${i}</button>`;
     html += `</div><div class="scale-ends"><span>לא מתאים כלל</span><span>מאוד מתאים</span></div></div>`;
   });
   document.getElementById('qList').innerHTML = html;
-
-  document.getElementById('btnBack').style.display = currentPage === 0 ? 'none' : '';
-  const isLast = currentPage === TOTAL_PAGES - 1;
-  document.getElementById('btnNext').textContent = isLast ? 'סיים וראה תוצאות ✓' : 'הבא ←';
+  document.getElementById('btnBack').style.visibility = currentPage===0?'hidden':'visible';
+  document.getElementById('btnNext').textContent = currentPage===TOTAL_PAGES-1 ? 'סיים וראה תוצאות ✓' : 'הבא ←';
   document.getElementById('warnMsg').textContent = '';
 }
 
-window.setAns = function(qid, val) {
-  answers[qid] = val;
-  renderPage();
-};
-
+window.setAns = function(qid, val) { answers[qid]=val; renderPage(); };
 window.goPage = function(dir) {
-  const pqs = pageQuestions();
-  const unanswered = pqs.filter(q => answers[q.id] === undefined);
-  if (dir > 0 && unanswered.length > 0) {
-    document.getElementById('warnMsg').textContent = 'יש לענות על כל השאלות לפני המעבר הלאה (' + unanswered.length + ' נותרו)';
-    return;
+  if(dir>0) {
+    const unanswered = pageQuestions().filter(q=>answers[q.id]===undefined);
+    if(unanswered.length>0) { document.getElementById('warnMsg').textContent='יש לענות על כל השאלות לפני המעבר הלאה ('+unanswered.length+' נותרו)'; return; }
+    if(currentPage===TOTAL_PAGES-1) { showResults(); return; }
   }
-  if (dir > 0 && currentPage === TOTAL_PAGES - 1) {
-    showResults(); return;
-  }
-  currentPage += dir;
-  renderPage();
-  window.scrollTo(0,0);
+  currentPage+=dir; renderPage(); window.scrollTo(0,0);
 };
 
-// ── RESULTS ──
 function showResults() {
-  document.getElementById('questionnaire').style.display = 'none';
-  document.getElementById('results').style.display = 'block';
+  document.getElementById('questionnaire').style.display='none';
+  document.getElementById('results').style.display='block';
   window.scrollTo(0,0);
 
-  // compute scores
-  const scores = virtues.map((v, vi) => {
-    const qs = questions.filter(q => q.virtue === vi);
-    let sum = 0;
-    qs.forEach(q => { if (answers[q.id]) sum += getScore(q, answers[q.id]); });
-    return { virtue: v, score: sum, max: qs.length * 5 };
+  const scored = strengths.map(s => {
+    let sum=0;
+    s.qs.forEach(qid => { const q=questions.find(x=>x.id===qid); if(answers[qid]!==undefined) sum+=getScore(q,answers[qid]); });
+    return {...s, score:sum, max:s.qs.length*5};
   });
 
-  // top virtue
-  const top = scores.reduce((a, b) => a.score > b.score ? a : b);
-  document.getElementById('topBanner').innerHTML = `
-    <div class="top-strength-banner">
-      <div class="tsb-inner">
-        <div class="tsb-label">החוזקה המובילה שלך</div>
-        <div class="tsb-title">${top.virtue.icon} ${top.virtue.name}</div>
-        <div class="tsb-sub">${top.virtue.name} היא החוזקה שמובילה אותך. ${top.virtue.desc_high.split('.')[0]}.</div>
-      </div>
-    </div>`;
+  const sorted = [...scored].sort((a,b)=>b.score-a.score);
+  const topIds = new Set(sorted.slice(0,6).map(s=>s.id));
 
-  // cards
-  let html = '';
-  scores.forEach(s => {
-    const pct = Math.round(s.score / s.max * 100);
-    const c = s.virtue.color;
-    let level, levelClass, desc;
-    if (pct >= 70) { level = 'חוזקה גבוהה'; levelClass = `lvl-${c}-high`; desc = s.virtue.desc_high; }
-    else if (pct >= 40) { level = 'חוזקה בינונית'; levelClass = `lvl-${c}-mid`; desc = s.virtue.desc_mid; }
-    else { level = 'יש מקום לצמיחה'; levelClass = `lvl-${c}-low`; desc = s.virtue.desc_low; }
+  document.getElementById('sigBanner').innerHTML = `<div class="sig-banner"><div class="sig-inner">
+    <div class="sig-label">⭐ חוזקות החותם שלך</div>
+    <div class="sig-title">6 החוזקות הגבוהות ביותר שלך</div>
+    <div class="sig-chips">${sorted.slice(0,6).map(s=>`<span class="sig-chip">${s.name}</span>`).join('')}</div>
+  </div></div>`;
 
-    const chips = s.virtue.strengths.map(st => `<span class="chip">${st}</span>`).join('');
-    html += `<div class="virtue-card vc-${c}">
-      <div class="vc-header">
-        <div class="vc-name-wrap">
-          <div class="vc-name">${s.virtue.icon} ${s.virtue.name}</div>
-          <div class="vc-eng">${s.virtue.eng}</div>
-        </div>
-        <div class="vc-score-wrap">
-          <div class="vc-score score-${c}">${s.score}</div>
-          <div class="vc-score-max">מתוך ${s.max}</div>
-        </div>
-      </div>
-      <div class="vc-bar-bg"><div class="vc-bar-fill bar-${c}" style="width:${pct}%"></div></div>
-      <div><span class="vc-level ${levelClass}">${level} – ${pct}%</span></div>
-      <div class="vc-desc">${desc}</div>
-      <div class="vc-strengths">
-        <div class="vc-strengths-label">חוזקות מרכזיות</div>
-        <div class="vc-strength-chips">${chips}</div>
-      </div>
+  let catHtml = '';
+  categories.forEach((cat,ci) => {
+    const cs = scored.filter(s=>s.cat===ci);
+    catHtml += `<div class="cat-section"><div class="cat-header" style="border-color:${cat.color}"><div class="cat-dot" style="background:${cat.color}"></div><div class="cat-title-text" style="color:${cat.color}">${cat.name}</div><div class="cat-eng">${cat.eng}</div></div><div class="strength-grid">`;
+    cs.forEach(s => {
+      const pct=Math.round(s.score/s.max*100), isTop=topIds.has(s.id);
+      let level, ls;
+      if(pct>=80){level='גבוה מאוד';ls=`background:${cat.color}22;color:${cat.color}`;}
+      else if(pct>=60){level='גבוה';ls=`background:${cat.color}18;color:${cat.color}`;}
+      else if(pct>=40){level='בינוני';ls=`background:#eee;color:#777`;}
+      else{level='נמוך';ls=`background:#f5f5f5;color:#aaa`;}
+      catHtml += `<div class="str-card" style="${isTop?`border:2px solid ${cat.color}`:''}">
+        ${isTop?'<div class="str-crown">⭐</div>':''}
+        <div class="str-name">${s.name}</div>
+        <div class="str-eng" style="color:${cat.color}99">${s.eng}</div>
+        <div class="str-bar-bg"><div class="str-bar-fill" style="width:${pct}%;background:${cat.color}"></div></div>
+        <div class="str-score-row"><span class="str-score" style="color:${cat.color}">${s.score}</span><span class="str-pct">${pct}%</span></div>
+        <span class="str-level" style="${ls}">${level}</span>
+      </div>`;
+    });
+    catHtml += `</div></div>`;
+  });
+  document.getElementById('catSections').innerHTML = catHtml;
+
+  let descHtml = '';
+  sorted.slice(0,6).forEach(s => {
+    const cat=categories[s.cat];
+    descHtml += `<div class="sig-desc-item">
+      <div class="sig-desc-name" style="color:${cat.color}">${s.name} <span class="sig-desc-eng">${s.eng}</span></div>
+      <div class="sig-desc-text">${descs[s.id]}</div>
     </div>`;
   });
-  document.getElementById('virtueCards').innerHTML = html;
+  document.getElementById('sigDescs').innerHTML = descHtml;
+
+  setTimeout(()=>{
+    document.querySelectorAll('.str-bar-fill').forEach(el=>{ const w=el.style.width; el.style.width='0'; setTimeout(()=>el.style.width=w,50); });
+  },100);
 }
 </script>
 </body>
